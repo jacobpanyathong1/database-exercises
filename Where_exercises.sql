@@ -13,11 +13,12 @@ FROM employees
 WHERE first_name = 'Irene' OR first_name = 'Vidya' OR first_name ='Maya';
 
 -- There are 731 records for the SQL search query above.
-SELECT count(first_name)
+SELECT *
 FROM employees
-WHERE first_name = 'Irene' OR first_name = 'Vidya' OR first_name ='Maya'
-	AND gender = 'M'
+WHERE (first_name = 'Irene' OR first_name = 'Vidya' OR first_name ='Maya')
+	AND gender = 'M';
 
+-- There are 455 records for the SQL search query above. 
 
 -- 5 is below
 
