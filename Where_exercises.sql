@@ -38,6 +38,10 @@ SELECT count(last_name)
 FROM employees
 WHERE last_name Like 'E%' AND last_name LIKE '%e';
 
+SELECT count(last_name)
+FROM employees
+WHERE last_name Like 'E%e'
+
 -- There are 899 records for this SQL query table above.
 
 SELECT count(*)
@@ -55,7 +59,7 @@ WHERE birth_date LIKE '%12-25%';
 SELECT count(*)
 FROM employees
 WHERE hire_date BETWEEN '1990-01-01' AND '1999-12-31'
-	AND birth_date LIKE '%12-25%'
+	AND birth_date LIKE '%12-25'
 ORDER BY hire_date DESC;
 
 -- There are 362 records for the above SQL query table.
