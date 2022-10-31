@@ -208,13 +208,13 @@ ORDER BY average_salary DESC
 limit 10;
 -- Departments with average salary
 
-SELECT first_name, last_name, dept_name(
-		SELECT b.first_name, b.last_name
-		FROM dept_manager as a 
-		JOIN employees as b 
-		ON a.emp_no = b_emp_no 
-		WHERE b.to_date > CURDATE()
-) AS 'Manager_Name'
+SELECT first_name, last_name, dept_name, (
+		SELECT first_name
+		FROM dept_manager AS a
+		JOIN dept_emp AS b
+		ON a.dept_no = b.dept_no
+		GROUP BY first_name
+		)
 FROM employees AS a
 JOIN dept_emp AS b
 ON a.emp_no = b.emp_no
@@ -223,6 +223,16 @@ ON c.dept_no = b.dept_no
 JOIN dept_manager AS d
 ON d.dept_no = b.dept_no
 WHERE b.to_date > curdate() AND d.to_date > CURDATE()
-GROUP BY first_name, last_name, dept_name, 'Manager_Name'
+GROUP BY first_name, last_name, dept_name
 limit 300;
 -- current employees, department name, and current manager
+
+SELECT first_name, last_name, salary
+FROM employees AS a
+JOIN salaries AS b
+ON a.emp_no = b.emp_no
+WHERE b.to_date > CURDATE()
+GROUP BY first_name, last_name, salary
+LIMIT 50;
+
+-- Highest paid employee within each department
